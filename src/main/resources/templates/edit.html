@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Edit Reminder</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#f8f6f2,#ebe6ff);
+}
+
+header{
+background:#7c5cff;
+color:white;
+padding:18px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+}
+
+.container{
+display:flex;
+justify-content:center;
+padding:40px 20px;
+}
+
+.form-card{
+background:white;
+width:100%;
+max-width:700px;
+padding:30px;
+border-radius:18px;
+box-shadow:0 12px 25px rgba(0,0,0,.08);
+}
+
+.form-card h2{
+margin-top:0;
+margin-bottom:25px;
+text-align:center;
+color:#7c5cff;
+}
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+color:#444;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px;
+box-sizing:border-box;
+}
+
+textarea{
+resize:vertical;
+}
+
+.actions{
+display:flex;
+gap:12px;
+margin-top:25px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+text-decoration:none;
+cursor:pointer;
+font-size:15px;
+}
+
+.btn-primary{
+background:#7c5cff;
+color:white;
+}
+
+.btn-edit{
+background:#f0ad4e;
+color:white;
+}
+
+.info{
+background:#f6f3ff;
+padding:12px;
+border-radius:10px;
+margin-bottom:18px;
+color:#555;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>🌸 Sahaaya</header>
+
+<div class="container">
+
+<div class="form-card">
+
+<h2>✏ Edit Reminder</h2>
+
+<div class="info">
+Update schedule, description, or completion status.
+</div>
+
+<form th:action="@{/edit/{id}(id=${reminder.id})}"
+      th:object="${reminder}" method="post">
+
+<div class="form-group">
+<label>Elderly Person Name</label>
+<input type="text" th:field="*{elderlyName}" required/>
+</div>
+
+<div class="form-group">
+<label>Reminder Type</label>
+<select th:field="*{type}">
+<option value="Medicine">Medicine</option>
+<option value="Routine">Routine</option>
+<option value="Exercise">Exercise</option>
+<option value="Water Intake">Water Intake</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea rows="3" th:field="*{description}"></textarea>
+</div>
+
+<div class="form-group">
+<label>Scheduled Time</label>
+<input type="text" th:field="*{scheduledTime}" placeholder="YYYY-MM-DD HH:MM" required/>
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<select th:field="*{status}">
+<option value="Pending">Pending</option>
+<option value="Completed">Completed</option>
+<option value="Missed">Missed</option>
+</select>
+</div>
+
+<div class="actions">
+<button type="submit" class="btn btn-primary">Update Reminder</button>
+<a href="/dashboard" class="btn btn-edit">Cancel</a>
+</div>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Welcome to Sahaaya</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#f8f6f2,#ebe6ff);
+}
+
+.user-card{
+background:white;
+width:100%;
+max-width:430px;
+padding:35px;
+border-radius:22px;
+box-shadow:0 15px 35px rgba(0,0,0,.10);
+text-align:center;
+}
+
+.logo{
+font-size:34px;
+margin-bottom:10px;
+}
+
+h2{
+margin:0;
+color:#7c5cff;
+font-size:30px;
+}
+
+p{
+color:#666;
+margin:12px 0 25px;
+font-size:15px;
+line-height:1.5;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:14px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:15px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#7c5cff;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.95;
+}
+
+.features{
+margin-top:18px;
+font-size:13px;
+color:#777;
+line-height:1.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="user-card">
+
+<div class="logo">🌸</div>
+
+<h2>Sahaaya</h2>
+
+<p>
+Smart Elderly Care Reminder Platform <br>
+Enter your details to continue.
+</p>
+
+<form action="/saveUser" method="post">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="number" name="age" placeholder="Your Age" min="1" max="120" required>
+
+<button type="submit">Continue to Dashboard →</button>
+
+</form>
+
+<div class="features">
+🧠 Smart Scheduling <br>
+☁ Cloud Powered Storage <br>
+🔔 Reminder Notifications
+</div>
+
+</div>
+
+</body>
+</html>

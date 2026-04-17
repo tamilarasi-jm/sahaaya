@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Add Reminder</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#f8f6f2,#ebe6ff);
+}
+
+header{
+background:#7c5cff;
+color:white;
+padding:18px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+}
+
+.container{
+display:flex;
+justify-content:center;
+padding:40px 20px;
+}
+
+.form-card{
+background:white;
+width:100%;
+max-width:650px;
+padding:30px;
+border-radius:18px;
+box-shadow:0 12px 25px rgba(0,0,0,.08);
+}
+
+.form-card h2{
+margin-top:0;
+color:#7c5cff;
+text-align:center;
+margin-bottom:25px;
+}
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+color:#444;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px;
+box-sizing:border-box;
+}
+
+textarea{
+resize:vertical;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.actions{
+display:flex;
+gap:12px;
+margin-top:25px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+text-decoration:none;
+cursor:pointer;
+font-size:15px;
+}
+
+.btn-primary{
+background:#7c5cff;
+color:white;
+}
+
+.btn-edit{
+background:#f0ad4e;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<header>🌸 Sahaaya</header>
+
+<div class="container">
+
+<div class="form-card">
+
+<h2>➕ Add New Reminder</h2>
+
+<form th:action="@{/add}" th:object="${reminder}" method="post">
+
+<div class="form-group">
+<label>Elderly Person Name</label>
+<input type="text" th:field="*{elderlyName}" placeholder="Ex: Grandma Meena" required/>
+</div>
+
+<div class="form-group">
+<label>Reminder Type</label>
+<select th:field="*{type}">
+<option value="Medicine">Medicine</option>
+<option value="Routine">Routine</option>
+<option value="Exercise">Exercise</option>
+<option value="Water Intake">Water Intake</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Description</label>
+<textarea rows="3" th:field="*{description}" placeholder="Ex: Take BP tablet after breakfast"></textarea>
+</div>
+
+<div class="row">
+
+<div class="form-group">
+<label>Select Date</label>
+<input type="date" id="date" required>
+</div>
+
+<div class="form-group">
+<label>Select Time</label>
+<input type="time" id="time" required>
+</div>
+
+</div>
+
+<input type="hidden" th:field="*{scheduledTime}" id="scheduledTime">
+
+<div class="actions">
+<button type="submit" class="btn btn-primary">Save Reminder</button>
+<a href="/dashboard" class="btn btn-edit">Cancel</a>
+</div>
+
+</form>
+
+</div>
+</div>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(){
+let date = document.getElementById("date").value;
+let time = document.getElementById("time").value;
+
+document.getElementById("scheduledTime").value =
+date + " " + time;
+});
+</script>
+
+</body>
+</html>
